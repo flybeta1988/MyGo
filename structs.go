@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-type Vertex struct {
+type Vertex2 struct {
 	x int
 	y int
 }
 
 func main() {
-	fmt.Println(Vertex{1, 2})
+	fmt.Println(Vertex2{1, 2})
 }
