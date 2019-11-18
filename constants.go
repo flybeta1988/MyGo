@@ -6,7 +6,7 @@ const Pi = 3.14159
 
 func main() {
 	const World = "世界"
-	fmt.Println("Hello", World)
+	fmt.Println("Struct", World)
 	fmt.Println("Happy", Pi, "Day")
 
 	const Truth = true
