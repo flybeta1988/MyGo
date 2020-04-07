@@ -5,6 +5,8 @@ import (
 	"strconv"
 )
 
+//https://blog.csdn.net/shenyunfei1990/article/details/84922931
+
 type Element interface{}
 
 type List []Element
