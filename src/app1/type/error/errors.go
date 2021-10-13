@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
@@ -14,6 +15,8 @@ func (e *MyError) Error() string {
 	return fmt.Sprintf("at %v, %s", e.When, e.What)
 }
 
+var errDivisionByZero = errors.New("division by zero")
+
 func run() error {
 	return &MyError{
 		time.Now(),
@@ -21,8 +24,16 @@ func run() error {
 	}
 }
 
+func run2() error {
+	return errDivisionByZero
+}
+
 func main() {
 	if err := run(); err != nil {
+		fmt.Println(err)
+	}
+
+	if err := run2(); err != nil {
 		fmt.Println(err)
 	}
 }

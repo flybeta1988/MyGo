@@ -19,11 +19,20 @@ type Shaper interface {
 	Area() float32
 }
 
+func (sq *Square) Area() float32 {
+	return sq.side * sq.side
+}
+
+func (ci *Circle) Area() float32 {
+	return ci.radius * ci.radius * math.Pi
+}
+
 func main() {
 	//一个接口类型的变量
 	var areaIntf Shaper
 	sq1 := new(Square)
 	sq1.side = 5
+	fmt.Printf("The type of areaIntf is: %T\n", sq1)
 
 	areaIntf = sq1
 
@@ -36,13 +45,4 @@ func main() {
 	} else {
 		fmt.Println("areaIntf does not contain a variable of type Circle")
 	}
-
-}
-
-func (sq *Square) Area() float32 {
-	return sq.side * sq.side
-}
-
-func (ci *Circle) Area() float32 {
-	return ci.radius * ci.radius * math.Pi
 }
