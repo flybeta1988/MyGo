@@ -29,11 +29,14 @@ func NewIpcServer(server Server) *IpcServer {
 }
 
 func (server *IpcServer) Connect() chan string {
-	session := make(chan string, 0)
+	session := make(chan string, 10)
 	go func(c chan string) {
+		fmt.Println("ipc.server go Connect. chan len:", len(c))
 		for {
 			request := <-c
+			fmt.Println("ipc.server go Connect request:", request)
 			if request == "CLOSE" {
+				fmt.Println("ipc.server go Connect -> request close!")
 				break
 			}
 
@@ -42,10 +45,12 @@ func (server *IpcServer) Connect() chan string {
 			if err != nil {
 				fmt.Println("Invalid request format:", request)
 			}
+			fmt.Println("ipc.server go Connect -> req:", req)
 
 			resp := server.Handle(req.Method, req.Params)
 			b, err := json.Marshal(resp)
 			c <- string(b)
+			fmt.Printf("client.conn len:%d type:%T\n", len(c), c)
 		}
 	}(session)
 	fmt.Println("A new session has been created successfully.")

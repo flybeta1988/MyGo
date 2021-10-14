@@ -1,6 +1,9 @@
 package ipc
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type IpcClient struct {
 	conn chan string
@@ -19,8 +22,19 @@ func (client *IpcClient) Call(method, params string) (resp *Response, err error)
 		return
 	}
 
-	client.conn <- string(b)
+	fmt.Println("before client.conn.len:", len(client.conn))
+
+	jsonStr := string(b)
+	select {
+	case client.conn <- jsonStr:
+		fmt.Println("client.conn write ok")
+		fmt.Printf("client.conn len:%d type:%T\n", len(client.conn), client.conn)
+	default:
+		fmt.Println("client.conn write failed!")
+	}
+
 	str := <-client.conn //等待返回值
+	fmt.Println("after client.conn.len:", len(client.conn), " str:", str)
 
 	var resp1 Response
 	err = json.Unmarshal([]byte(str), &resp1)

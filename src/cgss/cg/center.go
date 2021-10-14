@@ -32,17 +32,17 @@ func NewCenterServer() *CenterServer {
 
 func (server *CenterServer) Handle(method, params string) *ipc.Response {
 	switch method {
-	case "addplayer":
+	case "addPlayer":
 		err := server.addPlayer(params)
 		if err != nil {
 			return &ipc.Response{Code: err.Error()}
 		}
-	case "removeplayer":
+	case "removePlayer":
 		err := server.removePlayer(params)
 		if err != nil {
 			return &ipc.Response{Code: err.Error()}
 		}
-	case "listplayer":
+	case "listPlayer":
 		players, err := server.listPlayer(params)
 		if err != nil {
 			return &ipc.Response{Code: err.Error()}

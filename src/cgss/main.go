@@ -29,6 +29,7 @@ func main() {
 		tokens := strings.Split(line, " ")
 		if handler, ok := handlers[tokens[0]]; ok {
 			ret := handler(tokens)
+			fmt.Println(tokens[0], " ret:", ret)
 			if ret != 0 {
 				break;
 			}
@@ -134,7 +135,7 @@ func GetCommandHandlers() map[string]func(args []string) int {
 		"q": Quit,
 		"login": Login,
 		"logout": Logout,
-		"listPlayer": ListPlayer,
+		"listplayer": ListPlayer,
 		"send": Send,
 	}
 }

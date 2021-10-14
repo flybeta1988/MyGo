@@ -11,12 +11,20 @@ func main() {
 }
 
 func testChanFor() {
-	ch := make(chan int, 10)
-	for i := 0; i < 5; i++ {
+	ch := make(chan int, 5)
+	for i := 0; i < 3; i++ {
 		ch <- i
 	}
-	for j := range ch {
-		fmt.Println(j)
+	fmt.Println(len(ch))
+	fmt.Printf("ch type:%T\n", ch)
+
+	for i := 0; i < 10; i ++ {
+		select {
+		case j, ok := <-ch:
+			fmt.Println(j, " ", ok)
+		default:
+			fmt.Println("this is default!")
+		}
 	}
 }
 
