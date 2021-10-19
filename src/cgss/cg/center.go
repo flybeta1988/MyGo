@@ -7,6 +7,8 @@ import (
 	"sync"
 )
 
+var _ ipc.Server = &CenterServer{} //确认实现了Server接口
+
 type Message struct {
 	From string "from"
 	To string "to"
@@ -28,38 +30,6 @@ func NewCenterServer() *CenterServer {
 	servers := make(map[string] ipc.Server)
 	players := make([]*Player, 0)
 	return &CenterServer{servers: servers, players: players}
-}
-
-func (server *CenterServer) Handle(method, params string) *ipc.Response {
-	switch method {
-	case "addPlayer":
-		err := server.addPlayer(params)
-		if err != nil {
-			return &ipc.Response{Code: err.Error()}
-		}
-	case "removePlayer":
-		err := server.removePlayer(params)
-		if err != nil {
-			return &ipc.Response{Code: err.Error()}
-		}
-	case "listPlayer":
-		players, err := server.listPlayer(params)
-		if err != nil {
-			return &ipc.Response{Code: err.Error()}
-		}
-		return &ipc.Response{"200", players}
-	case "broadcast":
-		err := server.broadcast(params)
-		if err != nil {
-			return &ipc.Response{Code: err.Error()}
-		}
-		return &ipc.Response{Code: "200"}
-	}
-	return &ipc.Response{Code: "200"}
-}
-
-func (server *CenterServer) Name() string {
-	return "CenterServer"
 }
 
 func (server *CenterServer) addPlayer(params string) error {
@@ -107,11 +77,11 @@ func (server *CenterServer) listPlayer(params string) (players string, err error
 	if len(server.players) > 0 {
 		b, _ := json.Marshal(server.players)
 		players = string(b)
+		return players, nil
 	} else {
 		err = errors.New("No player online.")
 		return "", err
 	}
-	return players, nil
 }
 
 func (server *CenterServer) broadcast(params string) error {
@@ -132,6 +102,38 @@ func (server *CenterServer) broadcast(params string) error {
 		err = errors.New("No player online.")
 	}
 	return err
+}
+
+func (server *CenterServer) Handle(method, params string) *ipc.Response {
+	switch method {
+	case "addplayer":
+		err := server.addPlayer(params)
+		if err != nil {
+			return &ipc.Response{Code: err.Error()}
+		}
+	case "removeplayer":
+		err := server.removePlayer(params)
+		if err != nil {
+			return &ipc.Response{Code: err.Error()}
+		}
+	case "listplayer":
+		players, err := server.listPlayer(params)
+		if err != nil {
+			return &ipc.Response{Code: err.Error()}
+		}
+		return &ipc.Response{"200", players}
+	case "broadcast":
+		err := server.broadcast(params)
+		if err != nil {
+			return &ipc.Response{Code: err.Error()}
+		}
+		return &ipc.Response{Code: "200"}
+	}
+	return &ipc.Response{Code: "200", Body: "default ok"}
+}
+
+func (server *CenterServer) Name() string {
+	return "CenterServer"
 }
 
 
