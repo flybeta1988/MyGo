@@ -4,5 +4,6 @@ import "leecode/question"
 
 func main() {
 	//question.TestTwoSum()
-	question.TestReverse()
+	//question.TestReverse()
+	question.TestIsPalindrome()
 }
