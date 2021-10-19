@@ -15,7 +15,7 @@ func NewIpcClient(server *IpcServer) *IpcClient {
 }
 
 func (client *IpcClient) Call(method, params string) (resp *Response, err error)  {
-	req := Request{method, params}
+	req := &Request{method, params}
 	var b []byte
 	b, err = json.Marshal(req)
 	if err != nil {

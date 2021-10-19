@@ -29,9 +29,9 @@ func NewIpcServer(server Server) *IpcServer {
 }
 
 func (server *IpcServer) Connect() chan string {
-	session := make(chan string, 10)
+	session := make(chan string, 0)
 	go func(c chan string) {
-		fmt.Println("ipc.server go Connect. chan len:", len(c))
+		fmt.Println("ipc.server go Connect -> start... chan len:", len(c))
 		for {
 			request := <-c
 			fmt.Println("ipc.server go Connect request:", request)
@@ -52,6 +52,7 @@ func (server *IpcServer) Connect() chan string {
 			c <- string(b)
 			fmt.Printf("client.conn len:%d type:%T\n", len(c), c)
 		}
+		fmt.Println("Session closed.")
 	}(session)
 	fmt.Println("A new session has been created successfully.")
 	return session
