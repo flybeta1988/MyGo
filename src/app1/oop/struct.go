@@ -8,7 +8,8 @@ type Rect struct {
 }
 
 func main() {
-	testBase()
+	//testBase()
+	testInit()
 }
 
 func NewRect(x, y, width, height float64) *Rect {
@@ -26,5 +27,12 @@ func (r *Rect) Area() float64 {
 func testBase() {
 	var rect *Rect
 	rect = NewRect(0,0, 100, 200)
+	fmt.Println(rect)
+}
+
+func testInit() {
+	var rect Rect
+	rect = Rect{1, 1, 1, 1}
+	rect.x = 100
 	fmt.Println(rect)
 }

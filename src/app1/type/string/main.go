@@ -6,7 +6,8 @@ import (
 
 func main() {
 	//testBase()
-	testStrFor2()
+	testStrFor()
+	//testStrFor2()
 }
 
 func testStrFor2() {
@@ -19,7 +20,7 @@ func testStrFor2() {
 }
 
 func testStrFor() {
-	str := "Hello,世界"
+	str := "ABC,世界"
 	num := len(str)
 	for i := 0; i < num; i ++ {
 		ch := str[i] //依据下标取字符串中的字符，类型为byte

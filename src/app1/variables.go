@@ -2,9 +2,18 @@ package main
 
 import "fmt"
 
-var c, python, java bool
-
 func main() {
-	var i int
-	fmt.Println(i, c, python, java)
+	test1()
+}
+
+//意外的变量幽灵
+func test1() {
+	x := 1
+	fmt.Println(x)
+	{
+		fmt.Println(x)
+		x := 2
+		fmt.Println(x)
+	}
+	fmt.Println(x)
 }
