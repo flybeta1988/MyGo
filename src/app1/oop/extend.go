@@ -21,14 +21,19 @@ func test() {
 	d.Run()
 }
 
+func (animal Animal) Stop()  {
+	fmt.Println("animal's stop! speed:", animal.Speed)
+}
+
 func (animal Animal) Run() float32 {
 	fmt.Println("animal speed:", animal.Speed)
 	return animal.Speed
 }
 
 func (dog Dog) Run() float32 {
-	dog.Animal.Run()
-	fmt.Println("dog speed:", dog.Speed)
+	dog.Stop()
+	//dog.Animal.Run(dog.Speed)
+	//fmt.Println("dog speed:", dog.Speed)
 	return dog.Speed
 }
 

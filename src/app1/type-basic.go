@@ -12,6 +12,7 @@ var (
 )
 
 func main() {
+	fmt.Println()
 	const f = "%T(%v)\n"
 	fmt.Printf(f, ToBe, ToBe)
 	fmt.Printf(f, MaxInt, MaxInt)

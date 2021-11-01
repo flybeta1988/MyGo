@@ -11,7 +11,7 @@ func main() {
 }
 
 func testStrFor2() {
-	str := "Hello,世界"
+	str := "ABC,世界"
 	for i, ch := range str {
 		//以Unicode字符方式遍历时，每个字符的类型是 rune （早期的Go语言用 int 类型表示Unicode字符），而不是byte
 		//fmt.Println(i, ch)
@@ -24,8 +24,8 @@ func testStrFor() {
 	num := len(str)
 	for i := 0; i < num; i ++ {
 		ch := str[i] //依据下标取字符串中的字符，类型为byte
-		//fmt.Printf("%c\n", ch)
-		fmt.Println(i, ch)
+		fmt.Printf("%c\n", ch)
+		//fmt.Println(i, ch)
 	}
 }
 
