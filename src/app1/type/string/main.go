@@ -6,8 +6,8 @@ import (
 
 func main() {
 	//testBase()
-	testStrFor()
-	//testStrFor2()
+	//testStrFor()
+	testStrFor2()
 }
 
 func testStrFor2() {
