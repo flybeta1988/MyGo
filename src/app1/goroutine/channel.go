@@ -5,9 +5,9 @@ import (
 )
 
 func main() {
-	//test2()
+	test2()
 	//testSelect()
-	testChanFor()
+	//testChanFor()
 }
 
 func testChanFor() {
@@ -51,8 +51,7 @@ func test2()  {
 	intChan <- 2
 	id := <-intChan
 	id2 := <-intChan
-	fmt.Println(id)
-	fmt.Println(id2)
+	fmt.Println(id, id2)
 }
 
 func Count2(ch chan int) {
