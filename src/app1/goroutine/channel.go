@@ -5,7 +5,8 @@ import (
 )
 
 func main() {
-	test2()
+	test1()
+	//test2()
 	//testSelect()
 	//testChanFor()
 }
