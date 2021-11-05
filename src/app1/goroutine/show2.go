@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
-//var waitGroup sync.WaitGroup
-
+//var wg sync.WaitGroup
 func main() {
 	t2()
 }
@@ -54,20 +52,17 @@ func closeChan(ch chan int, ok1 chan int, ok2 chan int) {
 }
 
 func work1(ch chan int, ok chan int) {
-	time.Sleep(5 * time.Second)
-	//defer waitGroup.Done()
 	for i := 1; i <= 5; i ++ {
 		fmt.Print("work1-", i, " start...")
 		ch <- i
-		fmt.Println("work1-", i, "end!")
+		fmt.Println("work1-", i, " end!")
 	}
+
 	ok <- 1
-	fmt.Println("work2 =====> ok!")
+	fmt.Println("work1 =====> ok!")
 }
 
 func work2(ch chan int, ok chan int) {
-	time.Sleep(5 * time.Second)
-	//defer waitGroup.Done()
 	for i := 6; i <= 10; i ++ {
 		fmt.Print("work2-", i, " start...")
 		ch <- i
