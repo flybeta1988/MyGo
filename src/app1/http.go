@@ -7,7 +7,6 @@ import (
 )
 
 type Hello struct {
-
 }
 
 func (h Hello) ServeHTTP(
@@ -23,5 +22,3 @@ func main() {
 		log.Fatal(err)
 	}
 }
-
-
