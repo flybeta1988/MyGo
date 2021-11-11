@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 )
 
@@ -27,6 +28,7 @@ func work31(ids *[]int) {
 	defer wgg.Done()
 	for i := 1; i <= 5; i ++ {
 		fmt.Print("work1-", i, " start...")
+		runtime.Gosched()
 		*ids = append(*ids, i)
 		fmt.Println("work1-", i, "end!")
 	}

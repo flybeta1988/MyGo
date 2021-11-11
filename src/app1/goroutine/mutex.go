@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
-	"sync/atomic"
 )
 
 var (
 	count2 int32
 	wg2 sync.WaitGroup
+	mutex sync.Mutex
 )
 
 func main() {
@@ -23,7 +23,14 @@ func main() {
 func incCount2() {
 	defer wg2.Done()
 	for i := 0; i < 2; i++ {
-		atomic.AddInt32(&count2, 1) //安全的对count2加1
-		runtime.Gosched()
+		//同一时刻只允许一个goroutine进入这个临界区
+		mutex.Lock()
+		{
+			value := count2
+			runtime.Gosched()
+			value ++
+			count2 = value
+		}
+		mutex.Unlock()
 	}
 }

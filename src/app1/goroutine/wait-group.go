@@ -10,6 +10,7 @@ var (
 	count int32
 	wg sync.WaitGroup
 )
+
 func main() {
 	wg.Add(2)
 	go incCount()
