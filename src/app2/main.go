@@ -13,7 +13,15 @@ func main() {
 	//interview.TestAppend()
 	//interview.TestLock()
 	//interview.TestChannel()
-	interview.TestInterface()
+	//interview.TestInterface()
+	//interview.TestInterface2()
+	//interview.TestDeferFunc()
+	//interview.TestNew()
+	//interview.TestAppend2()
+	//interview.TestStructCompare()
+	//interview.TestConst()
+	//interview.TestReturn()
+	interview.TestInterface3()
 }
 
 

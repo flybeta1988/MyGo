@@ -19,6 +19,8 @@ func (ua *UserAges) Add(name string, age int) {
 }
 
 func (ua *UserAges) Get(name string) int {
+	ua.Lock()
+	defer ua.Unlock()
 	if age, ok := ua.ages[name]; ok {
 		return age
 	}
@@ -26,17 +28,24 @@ func (ua *UserAges) Get(name string) int {
 }
 
 func TestLock() {
-	ua := &UserAges{}
+	ua := &UserAges{ages: make(map[string]int)}
+
+	var wg sync.WaitGroup
+	wg.Add(2)
 
 	go func(ua *UserAges, name string) {
 		ua.Add(name, 30)
 		fmt.Println("add ok")
+		wg.Done()
 	}(ua, "a")
 
 	go func(ua *UserAges, name string) {
 		age := ua.Get(name)
 		fmt.Println("get ok, age:", age)
+		wg.Done()
 	}(ua, "a")
+
+	wg.Wait()
 
 	fmt.Println(ua.ages)
 }

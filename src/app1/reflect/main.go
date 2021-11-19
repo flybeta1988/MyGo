@@ -10,8 +10,8 @@ type UserModel struct {
 }
 
 type User struct {
-	Id int `json:"id"`
-	Name string `json:"name"`
+	Id int `json:"id" gorm:"id2"`
+	Name string `json:"name" gorm:"gname"`
 	Age int `json:"age"`
 	password int `json:"password"`
 }
@@ -19,8 +19,8 @@ type User struct {
 func main() {
 	//test1()
 	//test2()
-	//test3()
-	test4()
+	test3()
+	//test4()
 	//test5()
 }
 
@@ -110,6 +110,7 @@ func test3() {
 	}
 	if userName, ok := typeOfUser.FieldByName("Name"); ok {
 		fmt.Println(userName)
+		fmt.Println(userName.Tag.Get("gorm"))
 	}
 	if userAge, ok := typeOfUser.FieldByName("age"); ok {
 		fmt.Println(userAge)

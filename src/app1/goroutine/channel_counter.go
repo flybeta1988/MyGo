@@ -14,19 +14,28 @@ func main() {
 
 	go incNum(ch)
 
-	for c := range ch {
+	/*for c := range ch {
 		num = c
 		fmt.Println("get from ch:", c)
+	}*/
+	for {
+		v, ok := <-ch
+		if ok {
+			num = v
+			fmt.Println("get from ch:", num)
+		} else {
+			fmt.Println("break")
+			break
+		}
 	}
 
 	fmt.Println(num)
 }
 
 func incNum(ch chan int) {
-	var n int
-	for i := 0; i < 3; i++ {
-		n ++
-		ch <- n
+	for i := 0; i < 2; i++ {
+		ch <- i
+		fmt.Println("insert ok:", i)
 	}
 	close(ch)
 }

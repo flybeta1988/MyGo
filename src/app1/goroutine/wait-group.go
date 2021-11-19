@@ -23,6 +23,7 @@ func incCount() {
 	defer wg.Done()
 	for i := 0; i < 2; i++ {
 		value := count
+		//time.Sleep(2*time.Second)
 		runtime.Gosched() //让当前 goroutine 暂停的意思，退回执行队列，让其他等待的 goroutine 运行，目的是为了使资源竞争的结果更明显
 		value ++
 		count = value

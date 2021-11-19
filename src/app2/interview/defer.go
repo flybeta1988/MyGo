@@ -23,3 +23,37 @@ func DeferCallFun() {
 	defer calc("2", a, calc("20", a, b))
 	b = 1
 }
+
+//答案：https://studygolang.com/articles/10746
+//https://my.oschina.net/henrylee2cn/blog/505535
+func TestDeferFunc() {
+	println(DeferFunc1(1))
+	println(DeferFunc2(1))
+	println(DeferFunc3(1))
+}
+
+func DeferFunc1(i int) (t int) {
+	t = i
+	defer func() {
+		fmt.Println("defer t:", t)
+		t += 3
+	}()
+	return t
+}
+
+func DeferFunc2(i int) int {
+	t := i
+	defer func() {
+		fmt.Println("defer t:", t)
+		t += 3
+	}()
+	return t
+}
+
+func DeferFunc3(i int) (t int) {
+	defer func() {
+		fmt.Println("defer t:", t)
+		t += i
+	}()
+	return 2
+}

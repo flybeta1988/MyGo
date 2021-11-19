@@ -12,6 +12,7 @@ func main() {
 
 func t2() {
 	startTime := time.Now().Unix()
+
 	var ids []int
 	var ch, ok1, ok2 chan int
 	ch = make(chan int, 15)
@@ -24,6 +25,7 @@ func t2() {
 	go closeChan(ch, ok1, ok2)
 	//waitGroup.Wait()
 	fmt.Printf("ch cap:%d len:%d\n", cap(ch), len(ch))
+
 	for i := range ch {
 		fmt.Print(i)
 		ids = append(ids, i)
@@ -68,7 +70,7 @@ func work1(ch chan int, ok chan int) {
 }
 
 func work2(ch chan int, ok chan int) {
-	time.Sleep(time.Duration(3)*time.Second)
+	time.Sleep(time.Duration(4)*time.Second)
 	for i := 6; i <= 10; i ++ {
 		fmt.Print("work2-", i, " start...")
 		ch <- i

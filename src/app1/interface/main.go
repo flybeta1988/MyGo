@@ -22,10 +22,26 @@ type IWriter interface {
 func main() {
 	//var file1 IFile = new(File)
 	//testAssign()
-	testQuery()
+	//testQuery()
+	testType()
 }
 
-func (f *File) Read(buf []byte) (n int) {
+func testType() {
+	var i interface{}
+	i = "abc"
+	switch i.(type) {
+	case int:
+		fmt.Println("int")
+	case string:
+		fmt.Println("string")
+	}
+}
+
+func Foo(f IFile) {
+
+}
+
+func (f File) Read(buf []byte) (n int) {
 	return 0
 }
 

@@ -25,12 +25,10 @@ func incCount2() {
 	for i := 0; i < 2; i++ {
 		//同一时刻只允许一个goroutine进入这个临界区
 		mutex.Lock()
-		{
-			value := count2
-			runtime.Gosched()
-			value ++
-			count2 = value
-		}
+		value := count2
+		runtime.Gosched()
+		value ++
+		count2 = value
 		mutex.Unlock()
 	}
 }
