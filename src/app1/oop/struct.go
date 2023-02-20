@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type Rect struct {
-	x, y float64
+	x, y          float64
 	width, height float64
 }
 
@@ -26,7 +26,7 @@ func (r *Rect) Area() float64 {
 
 func testBase() {
 	var rect *Rect
-	rect = NewRect(0,0, 100, 200)
+	rect = NewRect(0, 0, 100, 200)
 	fmt.Println(rect)
 }
 
@@ -35,4 +35,5 @@ func testInit() {
 	rect = Rect{1, 1, 1, 1}
 	rect.x = 100
 	fmt.Println(rect)
+	fmt.Println(rect.Area())
 }

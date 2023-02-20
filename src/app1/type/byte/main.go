@@ -9,10 +9,14 @@ func main() {
 func test1() {
 	var b byte
 	b = 1
-	str := "abc"
+	str := "abcABC"
 	fmt.Printf("%d, %T\n", b, b)
 	for k, v := range str {
-		fmt.Printf("%d, %T\n", k, v)
+		fmt.Printf("%d, %T, %d\n", k, v, v)
 		//fmt.Println(k, v)
 	}
+}
+
+func test2[T int | string](a, b T) T {
+	return a + b
 }

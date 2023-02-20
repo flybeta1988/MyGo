@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+//Go函数可以是一个闭包。
+//闭包是一个函数值，它引用了其函数体之外的变量。
+//该函数可以访问并赋予其引用的变量的值，换句话说，该函数被这些变量“绑定”在一起。
+
 func adder() func(int) int {
 	sum := 0
 	return func(x int) int {

@@ -9,7 +9,17 @@ import "fmt"
 func main() {
 	//testBase()
 	//testMake()
-	testOpt()
+	//testOpt()
+	testCap()
+}
+
+func testCap() {
+	vals := make([]int, 5)
+	for i := 1; i <= 3; i ++ {
+		vals = append(vals, i)
+	}
+	fmt.Println(len(vals), cap(vals))
+	fmt.Println(vals)
 }
 
 func testMake() {

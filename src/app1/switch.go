@@ -32,7 +32,37 @@ func switch2()  {
 	}
 }
 
+func swithc3() {
+	fmt.Println("When's Saturday?")
+	today := time.Now().Weekday()
+	fmt.Printf("Today's type:%T\n", today)
+	switch time.Saturday {
+	case today + 0:
+		fmt.Println("Today.")
+	case today + 1:
+		fmt.Println("Tomorrow.")
+	case today + 2:
+		fmt.Println("In two days.")
+	default:
+		fmt.Println("Too far away.")
+	}
+}
+
+//类型选择
+func switchType(i interface{}) {
+	switch v := i.(type) {
+	case int:
+		fmt.Printf("Twice %v is %v\n", v, v*v)
+	case string:
+		fmt.Printf("%q is %v bytes long\n", v, len(v))
+	default:
+		fmt.Printf("I dont't know about type %T\n", v)
+	}
+}
+
 func main() {
-	switch1()
-	switch2()
+	//switch1()
+	//switch2()
+	//swithc3()
+	switchType(1)
 }
